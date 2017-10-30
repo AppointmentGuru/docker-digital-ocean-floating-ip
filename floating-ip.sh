@@ -23,5 +23,5 @@ export MY_IP=$(curl -s http://169.254.169.254/metadata/v1/id)
 
 while true; do
     ./doctl compute floating-ip-action assign ${FLOATING_IP} ${MY_IP};
-    sleep 120;
+    sleep 86400;
 done
