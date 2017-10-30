@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 set -eu
 
@@ -12,12 +12,14 @@ else
     DIGITALOCEAN_ACCESS_TOKEN=${DIGITALOCEAN_ACCESS_TOKEN}
 fi
 
+
 MY_IP=$(curl -s http://169.254.169.254/metadata/v1/id)
 
-if [[ ! $MY_IP =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-    echo "MY_IP is not an IP, failing!"
-    exit 1
-fi
+# Only for bash
+#if [[ ! $MY_IP =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+#    echo "MY_IP is not an IP, failing!"
+#    exit 1
+#fi
 
 while true; do
     doctl compute floating-ip-action assign ${FLOATING_IP} ${MY_IP};
